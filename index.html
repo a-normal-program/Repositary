@@ -1,0 +1,633 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Pietro Medaina - Portfolio Web Designer</title>
+<script src="https://cdn.tailwindcss.com/3.4.16"></script>
+<script>tailwind.config={theme:{extend:{colors:{primary:'#3b82f6',secondary:'#8b5cf6'},borderRadius:{'none':'0px','sm':'4px',DEFAULT:'8px','md':'12px','lg':'16px','xl':'20px','2xl':'24px','3xl':'32px','full':'9999px','button':'8px'}}}}</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/remixicon/4.6.0/remixicon.min.css">
+<style>
+:where([class^="ri-"])::before { content: "\f3c2"; }
+body { font-family: 'Inter', sans-serif; }
+.hero-bg {
+background-image: url('https://readdy.ai/api/search-image?query=Modern%20minimalist%20geometric%20pattern%20background%20with%20subtle%20blue%20and%20white%20gradients%2C%20clean%20professional%20design%2C%20abstract%20geometric%20shapes%2C%20contemporary%20web%20design%20aesthetic%2C%20soft%20lighting%2C%20high-end%20digital%20portfolio%20background&width=1920&height=800&seq=hero-bg&orientation=landscape');
+background-size: cover;
+background-position: center;
+background-repeat: no-repeat;
+}
+.project-card {
+transition: all 0.3s ease;
+}
+.project-card:hover {
+transform: translateY(-8px);
+box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+}
+.filter-btn.active {
+background-color: #3b82f6;
+color: white;
+}
+.skill-card {
+transition: all 0.3s ease;
+}
+.skill-card:hover {
+transform: translateY(-4px);
+}
+.modal {
+display: none;
+position: fixed;
+top: 0;
+left: 0;
+width: 100%;
+height: 100%;
+background: rgba(0,0,0,0.8);
+z-index: 1000;
+}
+.modal.active {
+display: flex;
+align-items: center;
+justify-content: center;
+}
+.smooth-scroll {
+scroll-behavior: smooth;
+}
+</style>
+</head>
+<body class="smooth-scroll">
+<script>
+function scrollToSection(sectionId) {
+event.preventDefault();
+const section = document.getElementById(sectionId);
+if (section) {
+section.scrollIntoView({ behavior: 'smooth' });
+}
+}
+</script>
+<header class="bg-white shadow-sm fixed w-full top-0 z-50">
+<div class="max-w-7xl mx-auto px-6 py-4">
+<div class="flex items-center justify-between">
+<div class="font-['Pacifico'] text-2xl text-primary">Pietro Medaina</div>
+<nav class="hidden md:flex space-x-8">
+<a href="#portfolio" class="text-gray-700 hover:text-primary transition-colors">Portfolio</a>
+<a href="#chi-sono" class="text-gray-700 hover:text-primary transition-colors">Chi Sono</a>
+<a href="#contatti" class="text-gray-700 hover:text-primary transition-colors">Contatti</a>
+</nav>
+<button class="md:hidden w-8 h-8 flex items-center justify-center">
+<i class="ri-menu-line text-xl"></i>
+</button>
+</div>
+</div>
+</header>
+<section class="hero-bg min-h-screen flex items-center justify-center relative">
+<div class="absolute inset-0 bg-white bg-opacity-90"></div>
+<div class="relative z-10 text-center max-w-4xl mx-auto px-6">
+<h1 class="text-5xl md:text-7xl font-bold text-gray-900 mb-6">Il mio Portfolio</h1>
+<p class="text-xl md:text-2xl text-gray-600 mb-8 max-w-2xl mx-auto">Creo esperienze digitali uniche e coinvolgenti attraverso design innovativo e sviluppo web di alta qualità</p>
+<button onclick="document.getElementById('portfolio').scrollIntoView({behavior: 'smooth'})" class="bg-primary text-white px-8 py-4 !rounded-button text-lg font-semibold hover:bg-blue-600 transition-colors whitespace-nowrap">
+Scopri i miei lavori
+</button>
+</div>
+</section>
+<section id="portfolio" class="py-20 bg-gray-50">
+<div class="max-w-7xl mx-auto px-6">
+<div class="text-center mb-16">
+<h2 class="text-4xl font-bold text-gray-900 mb-4">I Miei Progetti</h2>
+<p class="text-xl text-gray-600">Una selezione dei lavori più significativi realizzati negli ultimi anni</p>
+</div>
+<div class="flex flex-wrap justify-center gap-4 mb-12">
+<button class="filter-btn active px-6 py-3 !rounded-button bg-gray-200 text-gray-700 hover:bg-primary hover:text-white transition-colors whitespace-nowrap" data-filter="all">Tutti</button>
+<button class="filter-btn px-6 py-3 !rounded-button bg-gray-200 text-gray-700 hover:bg-primary hover:text-white transition-colors whitespace-nowrap" data-filter="ecommerce">E-commerce</button>
+<button class="filter-btn px-6 py-3 !rounded-button bg-gray-200 text-gray-700 hover:bg-primary hover:text-white transition-colors whitespace-nowrap" data-filter="corporate">Corporate</button>
+<button class="filter-btn px-6 py-3 !rounded-button bg-gray-200 text-gray-700 hover:bg-primary hover:text-white transition-colors whitespace-nowrap" data-filter="landing">Landing Page</button>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+<div class="project-card bg-white rounded-xl shadow-lg overflow-hidden" data-category="ecommerce">
+<div class="h-48 bg-gray-200 overflow-hidden">
+<img src="https://readdy.ai/api/search-image?query=Modern%20e-commerce%20website%20design%20with%20clean%20layout%2C%20product%20showcase%2C%20shopping%20cart%20interface%2C%20professional%20web%20design%2C%20contemporary%20UI%20UX%2C%20minimalist%20aesthetic%2C%20high-quality%20digital%20storefront&width=400&height=300&seq=project1&orientation=landscape" alt="Progetto E-commerce" class="w-full h-full object-cover object-top">
+</div>
+<div class="p-6">
+<h3 class="text-xl font-semibold text-gray-900 mb-2">Boutique Fashion Store</h3>
+<p class="text-gray-600 mb-4">Piattaforma e-commerce completa per brand di moda di lusso con sistema di pagamento integrato</p>
+<div class="flex flex-wrap gap-2 mb-4">
+<span class="px-3 py-1 bg-blue-100 text-blue-800 text-sm rounded-full">React</span>
+<span class="px-3 py-1 bg-green-100 text-green-800 text-sm rounded-full">Node.js</span>
+<span class="px-3 py-1 bg-purple-100 text-purple-800 text-sm rounded-full">Stripe</span>
+</div>
+<button onclick="openModal('project1')" class="text-primary hover:text-blue-600 font-medium">Visualizza dettagli →</button>
+</div>
+</div>
+<div class="project-card bg-white rounded-xl shadow-lg overflow-hidden" data-category="corporate">
+<div class="h-48 bg-gray-200 overflow-hidden">
+<img src="https://readdy.ai/api/search-image?query=Professional%20corporate%20website%20design%20with%20modern%20layout%2C%20business%20presentation%2C%20company%20profile%20interface%2C%20clean%20professional%20web%20design%2C%20contemporary%20business%20aesthetic%2C%20corporate%20branding%20elements&width=400&height=300&seq=project2&orientation=landscape" alt="Progetto Corporate" class="w-full h-full object-cover object-top">
+</div>
+<div class="p-6">
+<h3 class="text-xl font-semibold text-gray-900 mb-2">Studio Legale Associato</h3>
+<p class="text-gray-600 mb-4">Sito web professionale per studio legale con area riservata clienti e sistema di prenotazioni</p>
+<div class="flex flex-wrap gap-2 mb-4">
+<span class="px-3 py-1 bg-blue-100 text-blue-800 text-sm rounded-full">WordPress</span>
+<span class="px-3 py-1 bg-yellow-100 text-yellow-800 text-sm rounded-full">PHP</span>
+<span class="px-3 py-1 bg-red-100 text-red-800 text-sm rounded-full">MySQL</span>
+</div>
+<button onclick="openModal('project2')" class="text-primary hover:text-blue-600 font-medium">Visualizza dettagli →</button>
+</div>
+</div>
+<div class="project-card bg-white rounded-xl shadow-lg overflow-hidden" data-category="landing">
+<div class="h-48 bg-gray-200 overflow-hidden">
+<img src="https://readdy.ai/api/search-image?query=Modern%20landing%20page%20design%20with%20compelling%20hero%20section%2C%20call-to-action%20buttons%2C%20conversion-focused%20layout%2C%20contemporary%20web%20design%2C%20marketing%20website%20interface%2C%20high-converting%20design%20elements&width=400&height=300&seq=project3&orientation=landscape" alt="Landing Page" class="w-full h-full object-cover object-top">
+</div>
+<div class="p-6">
+<h3 class="text-xl font-semibold text-gray-900 mb-2">App Fitness Revolution</h3>
+<p class="text-gray-600 mb-4">Landing page ad alta conversione per il lancio di una nuova app di fitness e wellness</p>
+<div class="flex flex-wrap gap-2 mb-4">
+<span class="px-3 py-1 bg-blue-100 text-blue-800 text-sm rounded-full">Vue.js</span>
+<span class="px-3 py-1 bg-green-100 text-green-800 text-sm rounded-full">Tailwind</span>
+<span class="px-3 py-1 bg-orange-100 text-orange-800 text-sm rounded-full">Analytics</span>
+</div>
+<button onclick="openModal('project3')" class="text-primary hover:text-blue-600 font-medium">Visualizza dettagli →</button>
+</div>
+</div>
+<div class="project-card bg-white rounded-xl shadow-lg overflow-hidden" data-category="ecommerce">
+<div class="h-48 bg-gray-200 overflow-hidden">
+<img src="https://readdy.ai/api/search-image?query=Artisan%20marketplace%20website%20design%20with%20product%20gallery%2C%20handmade%20crafts%20showcase%2C%20creative%20e-commerce%20platform%2C%20artistic%20web%20design%2C%20boutique%20online%20store%20interface%2C%20craft%20marketplace%20aesthetic&width=400&height=300&seq=project4&orientation=landscape" alt="Marketplace Artigianale" class="w-full h-full object-cover object-top">
+</div>
+<div class="p-6">
+<h3 class="text-xl font-semibold text-gray-900 mb-2">Marketplace Artigianale</h3>
+<p class="text-gray-600 mb-4">Piattaforma multi-vendor per artigiani locali con sistema di recensioni e chat integrata</p>
+<div class="flex flex-wrap gap-2 mb-4">
+<span class="px-3 py-1 bg-blue-100 text-blue-800 text-sm rounded-full">Laravel</span>
+<span class="px-3 py-1 bg-green-100 text-green-800 text-sm rounded-full">Vue.js</span>
+<span class="px-3 py-1 bg-purple-100 text-purple-800 text-sm rounded-full">PayPal</span>
+</div>
+<button onclick="openModal('project4')" class="text-primary hover:text-blue-600 font-medium">Visualizza dettagli →</button>
+</div>
+</div>
+<div class="project-card bg-white rounded-xl shadow-lg overflow-hidden" data-category="corporate">
+<div class="h-48 bg-gray-200 overflow-hidden">
+<img src="https://readdy.ai/api/search-image?query=Medical%20clinic%20website%20design%20with%20appointment%20booking%20system%2C%20healthcare%20professional%20interface%2C%20medical%20practice%20web%20design%2C%20clean%20healthcare%20aesthetic%2C%20patient%20portal%20design&width=400&height=300&seq=project5&orientation=landscape" alt="Clinica Medica" class="w-full h-full object-cover object-top">
+</div>
+<div class="p-6">
+<h3 class="text-xl font-semibold text-gray-900 mb-2">Clinica Medica San Marco</h3>
+<p class="text-gray-600 mb-4">Portale completo per clinica medica con prenotazioni online e gestione pazienti</p>
+<div class="flex flex-wrap gap-2 mb-4">
+<span class="px-3 py-1 bg-blue-100 text-blue-800 text-sm rounded-full">Angular</span>
+<span class="px-3 py-1 bg-green-100 text-green-800 text-sm rounded-full">Spring Boot</span>
+<span class="px-3 py-1 bg-red-100 text-red-800 text-sm rounded-full">PostgreSQL</span>
+</div>
+<button onclick="openModal('project5')" class="text-primary hover:text-blue-600 font-medium">Visualizza dettagli →</button>
+</div>
+</div>
+<div class="project-card bg-white rounded-xl shadow-lg overflow-hidden" data-category="landing">
+<div class="h-48 bg-gray-200 overflow-hidden">
+<img src="https://readdy.ai/api/search-image?query=Restaurant%20landing%20page%20design%20with%20menu%20showcase%2C%20food%20photography%2C%20reservation%20system%2C%20culinary%20web%20design%2C%20restaurant%20branding%2C%20appetizing%20food%20presentation%20website&width=400&height=300&seq=project6&orientation=landscape" alt="Ristorante Gourmet" class="w-full h-full object-cover object-top">
+</div>
+<div class="p-6">
+<h3 class="text-xl font-semibold text-gray-900 mb-2">Ristorante Il Convivio</h3>
+<p class="text-gray-600 mb-4">Sito web elegante per ristorante gourmet con menu digitale e sistema prenotazioni</p>
+<div class="flex flex-wrap gap-2 mb-4">
+<span class="px-3 py-1 bg-blue-100 text-blue-800 text-sm rounded-full">Gatsby</span>
+<span class="px-3 py-1 bg-purple-100 text-purple-800 text-sm rounded-full">GraphQL</span>
+<span class="px-3 py-1 bg-yellow-100 text-yellow-800 text-sm rounded-full">Contentful</span>
+</div>
+<button onclick="openModal('project6')" class="text-primary hover:text-blue-600 font-medium">Visualizza dettagli →</button>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section id="chi-sono" class="py-20 bg-white">
+<div class="max-w-7xl mx-auto px-6">
+<div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center mb-20">
+<div class="relative">
+<img src="https://readdy.ai/api/search-image?query=Professional%20portrait%20of%20a%20young%20male%20web%20developer%20and%20designer%20in%20a%20modern%20office%20environment%2C%20wearing%20smart%20casual%20attire%2C%20looking%20confident%20and%20approachable%2C%20natural%20lighting%2C%20clean%20background&width=600&height=800&seq=profile&orientation=portrait" alt="Pietro Medaina" class="w-full h-[600px] object-cover object-top rounded-2xl shadow-xl">
+<div class="absolute -bottom-6 -right-6 bg-primary text-white p-6 rounded-2xl shadow-lg">
+<div class="text-4xl font-bold mb-2">7+</div>
+<div class="text-sm">Anni di<br>Esperienza</div>
+</div>
+</div>
+<div>
+<h2 class="text-4xl font-bold text-gray-900 mb-6">Chi Sono</h2>
+<p class="text-xl text-gray-600 mb-8">Ciao! Sono Pietro Medaina, un web developer e designer con sede a Milano. Mi specializzo nella creazione di esperienze digitali innovative che combinano design accattivante e funzionalità robuste.</p>
+<div class="space-y-6 mb-8">
+<div class="flex items-start gap-4">
+<div class="w-12 h-12 bg-primary bg-opacity-10 rounded-xl flex items-center justify-center flex-shrink-0">
+<i class="ri-focus-2-line text-xl text-primary"></i>
+</div>
+<div>
+<h3 class="text-xl font-semibold text-gray-900 mb-2">Approccio Orientato ai Risultati</h3>
+<p class="text-gray-600">Mi concentro sulla creazione di soluzioni che non solo sembrano fantastiche, ma che generano risultati tangibili per i miei clienti.</p>
+</div>
+</div>
+<div class="flex items-start gap-4">
+<div class="w-12 h-12 bg-primary bg-opacity-10 rounded-xl flex items-center justify-center flex-shrink-0">
+<i class="ri-code-box-line text-xl text-primary"></i>
+</div>
+<div>
+<h3 class="text-xl font-semibold text-gray-900 mb-2">Tecnologie All'avanguardia</h3>
+<p class="text-gray-600">Utilizzo le ultime tecnologie e best practices per garantire che i progetti siano moderni, performanti e scalabili.</p>
+</div>
+</div>
+<div class="flex items-start gap-4">
+<div class="w-12 h-12 bg-primary bg-opacity-10 rounded-xl flex items-center justify-center flex-shrink-0">
+<i class="ri-user-heart-line text-xl text-primary"></i>
+</div>
+<div>
+<h3 class="text-xl font-semibold text-gray-900 mb-2">Focus sul Cliente</h3>
+<p class="text-gray-600">Lavoro a stretto contatto con i miei clienti per comprendere le loro esigenze e trasformare le loro visioni in realtà.</p>
+</div>
+</div>
+</div>
+<a href="#contatti" class="inline-flex items-center gap-2 bg-primary text-white px-8 py-4 !rounded-button text-lg font-semibold hover:bg-opacity-90 transition-colors whitespace-nowrap">
+Parliamo del tuo progetto
+<i class="ri-arrow-right-line"></i>
+</a>
+</div>
+</div>
+<div class="text-center mb-16">
+<h2 class="text-4xl font-bold text-gray-900 mb-4">Le Mie Competenze</h2>
+<p class="text-xl text-gray-600">Tecnologie e strumenti che utilizzo per creare soluzioni web innovative</p>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+<div class="skill-card bg-gray-50 p-8 rounded-xl text-center">
+<div class="w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-4">
+<i class="ri-code-s-slash-line text-2xl text-blue-600"></i>
+</div>
+<h3 class="text-xl font-semibold text-gray-900 mb-3">Frontend Development</h3>
+<p class="text-gray-600 mb-4">React, Vue.js, Angular, HTML5, CSS3, JavaScript ES6+, TypeScript</p>
+<div class="flex flex-wrap justify-center gap-2">
+<span class="px-3 py-1 bg-blue-100 text-blue-800 text-sm rounded-full">React</span>
+<span class="px-3 py-1 bg-green-100 text-green-800 text-sm rounded-full">Vue.js</span>
+<span class="px-3 py-1 bg-red-100 text-red-800 text-sm rounded-full">Angular</span>
+</div>
+</div>
+<div class="skill-card bg-gray-50 p-8 rounded-xl text-center">
+<div class="w-16 h-16 bg-primary bg-opacity-10 rounded-full flex items-center justify-center mx-auto mb-4">
+<i class="ri-server-line text-2xl text-primary"></i>
+</div>
+<h3 class="text-xl font-semibold text-gray-900 mb-3">Backend Development</h3>
+<p class="text-gray-600 mb-4">Node.js, PHP, Laravel, Spring Boot, API REST, Database Design</p>
+<div class="flex flex-wrap justify-center gap-2">
+<span class="px-3 py-1 bg-primary bg-opacity-10 text-primary text-sm rounded-full">Node.js</span>
+<span class="px-3 py-1 bg-primary bg-opacity-10 text-primary text-sm rounded-full">Laravel</span>
+<span class="px-3 py-1 bg-primary bg-opacity-10 text-primary text-sm rounded-full">Spring</span>
+</div>
+</div>
+<style>
+.skill-card {
+  opacity: 1;
+  transform: translateY(0px);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+</style>
+<div class="skill-card bg-gray-50 p-8 rounded-xl text-center">
+<div class="w-16 h-16 bg-primary bg-opacity-10 rounded-full flex items-center justify-center mx-auto mb-4">
+<i class="ri-shopping-cart-line text-2xl text-primary"></i>
+</div>
+<h3 class="text-xl font-semibold text-gray-900 mb-3">E-commerce Solutions</h3>
+<p class="text-gray-600 mb-4">WooCommerce, Shopify, Magento, Stripe, PayPal, Sistemi di Pagamento</p>
+<div class="flex flex-wrap justify-center gap-2">
+<span class="px-3 py-1 bg-primary bg-opacity-10 text-primary text-sm rounded-full">Shopify</span>
+<span class="px-3 py-1 bg-primary bg-opacity-10 text-primary text-sm rounded-full">WooCommerce</span>
+<span class="px-3 py-1 bg-primary bg-opacity-10 text-primary text-sm rounded-full">Magento</span>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section id="contatti" class="py-20 bg-gray-900 text-white">
+<div class="max-w-4xl mx-auto px-6 text-center">
+<h2 class="text-4xl font-bold mb-6">Iniziamo a Collaborare</h2>
+<p class="text-xl text-gray-300 mb-12">Hai un progetto in mente? Contattami per una consulenza gratuita</p>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-12">
+<div class="text-center">
+<div class="w-16 h-16 bg-primary rounded-full flex items-center justify-center mx-auto mb-4">
+<i class="ri-mail-line text-2xl text-white"></i>
+</div>
+<h3 class="text-lg font-semibold mb-2">Email</h3>
+<p class="text-gray-300">pietro.medaina@email.com</p>
+</div>
+<div class="text-center">
+<div class="w-16 h-16 bg-primary rounded-full flex items-center justify-center mx-auto mb-4">
+<i class="ri-phone-line text-2xl text-white"></i>
+</div>
+<h3 class="text-lg font-semibold mb-2">Telefono</h3>
+<p class="text-gray-300">+39 335 123 4567</p>
+</div>
+<div class="text-center">
+<div class="w-16 h-16 bg-primary rounded-full flex items-center justify-center mx-auto mb-4">
+<i class="ri-map-pin-line text-2xl text-white"></i>
+</div>
+<h3 class="text-lg font-semibold mb-2">Location</h3>
+<p class="text-gray-300">Milano, Italia</p>
+</div>
+</div>
+<div class="flex justify-center space-x-6 mb-12">
+<a href="#" class="w-12 h-12 bg-gray-800 rounded-full flex items-center justify-center hover:bg-primary transition-colors">
+<i class="ri-linkedin-fill text-xl"></i>
+</a>
+<a href="#" class="w-12 h-12 bg-gray-800 rounded-full flex items-center justify-center hover:bg-primary transition-colors">
+<i class="ri-behance-fill text-xl"></i>
+</a>
+<a href="#" class="w-12 h-12 bg-gray-800 rounded-full flex items-center justify-center hover:bg-primary transition-colors">
+<i class="ri-github-fill text-xl"></i>
+</a>
+<a href="#" class="w-12 h-12 bg-gray-800 rounded-full flex items-center justify-center hover:bg-primary transition-colors">
+<i class="ri-dribbble-fill text-xl"></i>
+</a>
+</div>
+</div>
+</section>
+<footer class="bg-black text-white py-8">
+<div class="max-w-7xl mx-auto px-6">
+<div class="flex flex-col md:flex-row justify-between items-center">
+<div class="font-['Pacifico'] text-xl text-primary mb-4 md:mb-0">Pietro Medaina</div>
+<div class="flex space-x-8 mb-4 md:mb-0">
+<a href="#portfolio" class="text-gray-300 hover:text-white transition-colors">Portfolio</a>
+<a href="#chi-sono" class="text-gray-300 hover:text-white transition-colors">Chi Sono</a>
+<a href="#contatti" class="text-gray-300 hover:text-white transition-colors">Contatti</a>
+</div>
+<p class="text-gray-400 text-sm">© 2024 Pietro Medaina. Tutti i diritti riservati.</p>
+</div>
+</div>
+</footer>
+<div id="projectModal" class="modal">
+<div class="bg-white rounded-xl max-w-4xl mx-4 max-h-[90vh] overflow-y-auto">
+<div class="p-8">
+<div class="flex justify-between items-center mb-6">
+<h3 id="modalTitle" class="text-2xl font-bold text-gray-900"></h3>
+<button onclick="closeModal()" class="w-8 h-8 flex items-center justify-center text-gray-400 hover:text-gray-600">
+<i class="ri-close-line text-xl"></i>
+</button>
+</div>
+<div id="modalContent"></div>
+</div>
+</div>
+</div>
+<script id="portfolio-filters">
+document.addEventListener('DOMContentLoaded', function() {
+const filterButtons = document.querySelectorAll('.filter-btn');
+const projectCards = document.querySelectorAll('.project-card');
+filterButtons.forEach(button => {
+button.addEventListener('click', function() {
+const filter = this.getAttribute('data-filter');
+filterButtons.forEach(btn => btn.classList.remove('active'));
+this.classList.add('active');
+projectCards.forEach(card => {
+if (filter === 'all' || card.getAttribute('data-category') === filter) {
+card.style.display = 'block';
+} else {
+card.style.display = 'none';
+}
+});
+});
+});
+});
+</script>
+<script id="modal-functionality">
+const projectDetails = {
+project1: {
+title: 'Boutique Fashion Store',
+content: `
+<img src="https://readdy.ai/api/search-image?query=Modern%20e-commerce%20website%20design%20with%20clean%20layout%2C%20product%20showcase%2C%20shopping%20cart%20interface%2C%20professional%20web%20design%2C%20contemporary%20UI%20UX%2C%20minimalist%20aesthetic%2C%20high-quality%20digital%20storefront&width=800&height=400&seq=project1-detail&orientation=landscape" alt="Boutique Fashion Store" class="w-full h-64 object-cover object-top rounded-lg mb-6">
+<p class="text-gray-600 mb-6">Progetto completo di e-commerce per un brand di moda di lusso. La piattaforma include un sistema di gestione prodotti avanzato, integrazione con sistemi di pagamento multipli e un'area amministrativa completa per la gestione degli ordini.</p>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+<div>
+<h4 class="font-semibold text-gray-900 mb-2">Caratteristiche Principali:</h4>
+<ul class="text-gray-600 space-y-1">
+<li>• Catalogo prodotti dinamico</li>
+<li>• Sistema di wishlist</li>
+<li>• Checkout ottimizzato</li>
+<li>• Gestione inventario</li>
+<li>• Sistema di recensioni</li>
+</ul>
+</div>
+<div>
+<h4 class="font-semibold text-gray-900 mb-2">Tecnologie Utilizzate:</h4>
+<ul class="text-gray-600 space-y-1">
+<li>• React.js per il frontend</li>
+<li>• Node.js per il backend</li>
+<li>• MongoDB per il database</li>
+<li>• Stripe per i pagamenti</li>
+<li>• AWS per l'hosting</li>
+</ul>
+</div>
+</div>
+<div class="bg-gray-50 p-4 rounded-lg">
+<p class="text-sm text-gray-600"><strong>Risultati:</strong> Aumento del 150% delle conversioni e riduzione del 40% del tasso di abbandono carrello.</p>
+</div>
+`
+},
+project2: {
+title: 'Studio Legale Associato',
+content: `
+<img src="https://readdy.ai/api/search-image?query=Professional%20corporate%20website%20design%20with%20modern%20layout%2C%20business%20presentation%2C%20company%20profile%20interface%2C%20clean%20professional%20web%20design%2C%20contemporary%20business%20aesthetic%2C%20corporate%20branding%20elements&width=800&height=400&seq=project2-detail&orientation=landscape" alt="Studio Legale" class="w-full h-64 object-cover object-top rounded-lg mb-6">
+<p class="text-gray-600 mb-6">Sito web professionale per studio legale con focus sulla user experience e l'accessibilità. Include un sistema di prenotazioni online e un'area riservata per i clienti dove consultare documenti e comunicazioni.</p>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+<div>
+<h4 class="font-semibold text-gray-900 mb-2">Funzionalità Implementate:</h4>
+<ul class="text-gray-600 space-y-1">
+<li>• Sistema prenotazioni online</li>
+<li>• Area clienti protetta</li>
+<li>• Gestione documenti</li>
+<li>• Blog legale</li>
+<li>• Moduli di contatto avanzati</li>
+</ul>
+</div>
+<div>
+<h4 class="font-semibold text-gray-900 mb-2">Stack Tecnologico:</h4>
+<ul class="text-gray-600 space-y-1">
+<li>• WordPress personalizzato</li>
+<li>• PHP custom development</li>
+<li>• MySQL database</li>
+<li>• SSL e sicurezza avanzata</li>
+<li>• SEO ottimizzato</li>
+</ul>
+</div>
+</div>
+<div class="bg-gray-50 p-4 rounded-lg">
+<p class="text-sm text-gray-600"><strong>Impatto:</strong> Miglioramento del 200% nell'acquisizione di nuovi clienti online e riduzione del 60% delle chiamate per informazioni base.</p>
+</div>
+`
+},
+project3: {
+title: 'App Fitness Revolution',
+content: `
+<img src="https://readdy.ai/api/search-image?query=Modern%20landing%20page%20design%20with%20compelling%20hero%20section%2C%20call-to-action%20buttons%2C%20conversion-focused%20layout%2C%20contemporary%20web%20design%2C%20marketing%20website%20interface%2C%20high-converting%20design%20elements&width=800&height=400&seq=project3-detail&orientation=landscape" alt="Fitness App Landing" class="w-full h-64 object-cover object-top rounded-lg mb-6">
+<p class="text-gray-600 mb-6">Landing page ad alta conversione progettata per il lancio di un'app fitness innovativa. Focus sulla persuasione e sull'ottimizzazione del tasso di conversione attraverso A/B testing continui.</p>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+<div>
+<h4 class="font-semibold text-gray-900 mb-2">Elementi di Conversione:</h4>
+<ul class="text-gray-600 space-y-1">
+<li>• Hero section ottimizzata</li>
+<li>• Social proof e testimonial</li>
+<li>• CTA strategicamente posizionate</li>
+<li>• Countdown timer</li>
+<li>• Form di registrazione semplificati</li>
+</ul>
+</div>
+<div>
+<h4 class="font-semibold text-gray-900 mb-2">Tecnologie e Tools:</h4>
+<ul class="text-gray-600 space-y-1">
+<li>• Vue.js per l'interattività</li>
+<li>• Tailwind CSS per lo styling</li>
+<li>• Google Analytics 4</li>
+<li>• Hotjar per heatmaps</li>
+<li>• Mailchimp integration</li>
+</ul>
+</div>
+</div>
+<div class="bg-gray-50 p-4 rounded-lg">
+<p class="text-sm text-gray-600"><strong>Performance:</strong> Tasso di conversione del 12.5% e oltre 10,000 pre-registrazioni in 30 giorni.</p>
+</div>
+`
+},
+project4: {
+title: 'Marketplace Artigianale',
+content: `
+<img src="https://readdy.ai/api/search-image?query=Artisan%20marketplace%20website%20design%20with%20product%20gallery%2C%20handmade%20crafts%20showcase%2C%20creative%20e-commerce%20platform%2C%20artistic%20web%20design%2C%20boutique%20online%20store%20interface%2C%20craft%20marketplace%20aesthetic&width=800&height=400&seq=project4-detail&orientation=landscape" alt="Marketplace Artigianale" class="w-full h-64 object-cover object-top rounded-lg mb-6">
+<p class="text-gray-600 mb-6">Piattaforma marketplace complessa che connette artigiani locali con clienti finali. Sistema multi-vendor con gestione commissioni, recensioni, chat integrata e sistema di spedizioni.</p>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+<div>
+<h4 class="font-semibold text-gray-900 mb-2">Funzionalità Avanzate:</h4>
+<ul class="text-gray-600 space-y-1">
+<li>• Sistema multi-vendor</li>
+<li>• Chat in tempo reale</li>
+<li>• Gestione commissioni automatica</li>
+<li>• Sistema di recensioni verificate</li>
+<li>• Tracking spedizioni</li>
+</ul>
+</div>
+<div>
+<h4 class="font-semibold text-gray-900 mb-2">Architettura Tecnica:</h4>
+<ul class="text-gray-600 space-y-1">
+<li>• Laravel framework</li>
+<li>• Vue.js frontend</li>
+<li>• WebSocket per chat</li>
+<li>• PayPal e Stripe</li>
+<li>• Redis per caching</li>
+</ul>
+</div>
+</div>
+<div class="bg-gray-50 p-4 rounded-lg">
+<p class="text-sm text-gray-600"><strong>Crescita:</strong> 500+ artigiani registrati e 15,000+ prodotti venduti nei primi 6 mesi.</p>
+</div>
+`
+},
+project5: {
+title: 'Clinica Medica San Marco',
+content: `
+<img src="https://readdy.ai/api/search-image?query=Medical%20clinic%20website%20design%20with%20appointment%20booking%20system%2C%20healthcare%20professional%20interface%2C%20medical%20practice%20web%20design%2C%20clean%20healthcare%20aesthetic%2C%20patient%20portal%20design&width=800&height=400&seq=project5-detail&orientation=landscape" alt="Clinica Medica" class="w-full h-64 object-cover object-top rounded-lg mb-6">
+<p class="text-gray-600 mb-6">Portale completo per clinica medica con sistema di prenotazioni online, gestione pazienti, cartelle cliniche digitali e telemedicina. Conformità GDPR e sicurezza dati sanitari.</p>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+<div>
+<h4 class="font-semibold text-gray-900 mb-2">Moduli Implementati:</h4>
+<ul class="text-gray-600 space-y-1">
+<li>• Prenotazioni online</li>
+<li>• Cartelle cliniche digitali</li>
+<li>• Sistema di telemedicina</li>
+<li>• Gestione appuntamenti</li>
+<li>• Promemoria automatici</li>
+</ul>
+</div>
+<div>
+<h4 class="font-semibold text-gray-900 mb-2">Tecnologie Enterprise:</h4>
+<ul class="text-gray-600 space-y-1">
+<li>• Angular framework</li>
+<li>• Spring Boot backend</li>
+<li>• PostgreSQL database</li>
+<li>• Sicurezza end-to-end</li>
+<li>• Backup automatizzati</li>
+</ul>
+</div>
+</div>
+<div class="bg-gray-50 p-4 rounded-lg">
+<p class="text-sm text-gray-600"><strong>Efficienza:</strong> Riduzione del 70% dei tempi di attesa e miglioramento del 85% nella soddisfazione pazienti.</p>
+</div>
+`
+},
+project6: {
+title: 'Ristorante Il Convivio',
+content: `
+<img src="https://readdy.ai/api/search-image?query=Restaurant%20landing%20page%20design%20with%20menu%20showcase%2C%20food%20photography%2C%20reservation%20system%2C%20culinary%20web%20design%2C%20restaurant%20branding%2C%20appetizing%20food%20presentation%20website&width=800&height=400&seq=project6-detail&orientation=landscape" alt="Ristorante Gourmet" class="w-full h-64 object-cover object-top rounded-lg mb-6">
+<p class="text-gray-600 mb-6">Sito web elegante per ristorante gourmet con focus sull'esperienza visiva e la presentazione dei piatti. Menu digitale interattivo, sistema prenotazioni e integrazione social media.</p>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+<div>
+<h4 class="font-semibold text-gray-900 mb-2">Caratteristiche Uniche:</h4>
+<ul class="text-gray-600 space-y-1">
+<li>• Menu digitale interattivo</li>
+<li>• Galleria fotografica professionale</li>
+<li>• Sistema prenotazioni tavoli</li>
+<li>• Eventi e degustazioni</li>
+<li>• Integrazione Instagram</li>
+</ul>
+</div>
+<div>
+<h4 class="font-semibold text-gray-900 mb-2">Stack Moderno:</h4>
+<ul class="text-gray-600 space-y-1">
+<li>• Gatsby.js per performance</li>
+<li>• GraphQL per i dati</li>
+<li>• Contentful CMS</li>
+<li>• Ottimizzazione immagini</li>
+<li>• PWA capabilities</li>
+</ul>
+</div>
+</div>
+<div class="bg-gray-50 p-4 rounded-lg">
+<p class="text-sm text-gray-600"><strong>Risultati:</strong> Aumento del 300% delle prenotazioni online e miglioramento significativo della brand awareness.</p>
+</div>
+`
+}
+};
+function openModal(projectId) {
+const modal = document.getElementById('projectModal');
+const title = document.getElementById('modalTitle');
+const content = document.getElementById('modalContent');
+const project = projectDetails[projectId];
+if (project) {
+title.textContent = project.title;
+content.innerHTML = project.content;
+modal.classList.add('active');
+document.body.style.overflow = 'hidden';
+}
+}
+function closeModal() {
+const modal = document.getElementById('projectModal');
+modal.classList.remove('active');
+document.body.style.overflow = 'auto';
+}
+document.addEventListener('DOMContentLoaded', function() {
+const modal = document.getElementById('projectModal');
+modal.addEventListener('click', function(e) {
+if (e.target === modal) {
+closeModal();
+}
+});
+});
+</script>
+<script id="smooth-animations">
+document.addEventListener('DOMContentLoaded', function() {
+const observerOptions = {
+threshold: 0.1,
+rootMargin: '0px 0px -50px 0px'
+};
+const observer = new IntersectionObserver(function(entries) {
+entries.forEach(entry => {
+if (entry.isIntersecting) {
+entry.target.style.opacity = '1';
+entry.target.style.transform = 'translateY(0)';
+}
+});
+}, observerOptions);
+const animatedElements = document.querySelectorAll('.project-card, .skill-card');
+animatedElements.forEach(el => {
+el.style.opacity = '0';
+el.style.transform = 'translateY(30px)';
+el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+observer.observe(el);
+});
+});
+</script>
+</body>
+</html>
